@@ -2,10 +2,10 @@
 add_filter('blox_breadcrumbs', 'blox_wc_breadcrumbs');
 function blox_wc_breadcrumbs($breadcrumbs) {
 
-	/* Product Archive Page */
-	if ( is_post_type_archive('product') && get_option('page_on_front') !== woocommerce_get_page_id('shop') ) {
+	/* Product Archive Page - woocommerce_get_page_id replaced with wc_get_page_id */
+	if ( is_post_type_archive('product') && get_option('page_on_front') !== wc_get_page_id('shop') ) {
 
-		$shop_page_id = woocommerce_get_page_id('shop');
+		$shop_page_id = wc_get_page_id('shop');
 
 		$shop_name = $shop_page_id ? get_the_title($shop_page_id) : ucwords(get_option('woocommerce_shop_slug'));
 
@@ -27,7 +27,7 @@ function blox_wc_breadcrumbs($breadcrumbs) {
 	if ( is_tax('product_cat') || is_tax('product_tag') ) {
 
 		$shop_url = get_option('woocommerce_prepend_shop_page_to_urls');
-		$shop_page_id = woocommerce_get_page_id('shop');
+		$shop_page_id = wc_get_page_id('shop');
 		$shop_title = get_the_title($shop_page_id);
 
 		if ( 'yes' == $shop_url && $shop_page_id && get_option('page_on_front') !== $shop_page_id )
@@ -91,7 +91,7 @@ function blox_wc_breadcrumbs($breadcrumbs) {
 
 		/* Shop prefix */
 		$shop_url = get_option('woocommerce_prepend_shop_page_to_products');
-		$shop_page_id = woocommerce_get_page_id('shop');
+		$shop_page_id = wc_get_page_id('shop');
 		$shop_title = get_the_title($shop_page_id);
 
 		if ( 'yes' == $shop_url && $shop_page_id && get_option('page_on_front') !== $shop_page_id )
